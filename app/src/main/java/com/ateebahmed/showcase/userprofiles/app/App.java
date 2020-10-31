@@ -3,16 +3,12 @@
  */
 package com.ateebahmed.showcase.userprofiles.app;
 
-import com.ateebahmed.showcase.userprofiles.list.LinkedList;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import static com.ateebahmed.showcase.userprofiles.utilities.StringUtils.join;
-import static com.ateebahmed.showcase.userprofiles.utilities.StringUtils.split;
-import static com.ateebahmed.showcase.userprofiles.app.MessageUtils.getMessage;
-
+@SpringBootApplication
 public class App {
     public static void main(String[] args) {
-        LinkedList tokens;
-        tokens = split(getMessage());
-        System.out.println(join(tokens));
+        SpringApplication.run(App.class, args);
     }
 }
