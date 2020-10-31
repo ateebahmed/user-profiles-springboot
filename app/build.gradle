@@ -21,3 +21,7 @@ application {
     // Define the main class for the application.
     mainClass = 'com.ateebahmed.showcase.userprofiles.app.App'
 }
+
+test {
+    useJUnitPlatform()
+}
