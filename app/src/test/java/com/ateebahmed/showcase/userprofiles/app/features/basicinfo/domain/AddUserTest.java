@@ -1,8 +1,9 @@
 package com.ateebahmed.showcase.userprofiles.app.features.basicinfo.domain;
 
-import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.AddressModel;
-import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.ContactModel;
-import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.UserModel;
+import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model.AddUser;
+import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model.Address;
+import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model.Contact;
+import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ public class AddUserTest {
 
     @Test
     public void createNewUser() {
-        final var user = addUser.createNewUser(new UserModel("First", "Last",
+        final var user = addUser.createNewUser(new User("First", "Last",
                 Collections.emptyList(), Collections.emptyList()));
 
         Assertions.assertEquals("First", user.getFirstName());
@@ -37,7 +38,7 @@ public class AddUserTest {
     @Test
     public void throwExceptionWhenUserFirstOrLastNamesAreEmpty() {
         final var exception = Assertions.assertThrows(IllegalArgumentException.class, () -> addUser
-                .createNewUser(new UserModel("", "", Collections.emptyList(), Collections.emptyList())));
+                .createNewUser(new User("", "", Collections.emptyList(), Collections.emptyList())));
 
         Assertions.assertEquals(IllegalArgumentException.class, exception.getClass());
     }
@@ -57,7 +58,7 @@ public class AddUserTest {
     @Test
     public void throwExceptionWhenAddressOrContactIsEmpty() {
         final var exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
-                addUser.createNewUser(new UserModel("First", "Last", Collections.emptyList(),
+                addUser.createNewUser(new User("First", "Last", Collections.emptyList(),
                         Collections.emptyList())));
 
         Assertions.assertEquals(IllegalArgumentException.class, exception.getClass());
@@ -66,10 +67,10 @@ public class AddUserTest {
     @Test
     public void throwExceptionWhenAddressFieldsAreEmpty() {
         final var exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
-                addUser.createNewUser(new UserModel("First", "Last",
-                        Collections.singletonList(new AddressModel("", "", "", "",
+                addUser.createNewUser(new User("First", "Last",
+                        Collections.singletonList(new Address("", "", "", "",
                                 "", "")),
-                        Collections.singletonList(new ContactModel("ateeb_ahmed33@outlook.com",
+                        Collections.singletonList(new Contact("ateeb_ahmed33@outlook.com",
                                 "+923354733833")))));
 
         Assertions.assertEquals(IllegalArgumentException.class, exception.getClass());
@@ -78,19 +79,19 @@ public class AddUserTest {
     @Test
     public void throwExceptionWhenContactEmailIsBlank() {
         final var exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
-                addUser.createNewUser(new UserModel("First", "Last",
-                        Collections.singletonList(new AddressModel("246", "21",
+                addUser.createNewUser(new User("First", "Last",
+                        Collections.singletonList(new Address("246", "21",
                                 "Manzoor Colony", "Karachi", "Sindh", "Pakistan")),
-                        Collections.singletonList(new ContactModel("", "")))));
+                        Collections.singletonList(new Contact("", "")))));
 
         Assertions.assertEquals(IllegalArgumentException.class, exception.getClass());
     }
 
-    private UserModel createFakeUser() {
-        return new UserModel("First", "Last",
-                Collections.singletonList(new AddressModel("246", "21", "Manzoor Colony",
+    private User createFakeUser() {
+        return new User("First", "Last",
+                Collections.singletonList(new Address("246", "21", "Manzoor Colony",
                         "Karachi", "Sindh", "Pakistan")),
-                Collections.singletonList(new ContactModel("ateeb_ahmed33@outlook.com",
+                Collections.singletonList(new Contact("ateeb_ahmed33@outlook.com",
                         "+923354733833")));
     }
 }
