@@ -3,7 +3,6 @@ package com.ateebahmed.showcase.userprofiles.app.features.basicinfo.domain;
 import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.AddressModel;
 import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.ContactModel;
 import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.UserModel;
-import lombok.val;
 import org.apache.logging.log4j.util.Strings;
 
 import java.util.function.Predicate;
@@ -29,14 +28,14 @@ public final class AddUser {
         if (userAddressContactAreEmpty.test(user))
             throw new IllegalArgumentException("User's address and contact have at least one entry");
 
-        val address = user.getAddresses()
+        final var address = user.getAddresses()
                 .stream()
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("User's address must have at least one entry"));
         if (addressFieldsAreBlank.test(address))
             throw new IllegalArgumentException("User's address fields must not be blank");
 
-        val contact = user.getContacts()
+        final var contact = user.getContacts()
                 .stream()
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("User's contact must have one entry"));

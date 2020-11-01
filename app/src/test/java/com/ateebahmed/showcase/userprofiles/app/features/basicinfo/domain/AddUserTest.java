@@ -3,7 +3,6 @@ package com.ateebahmed.showcase.userprofiles.app.features.basicinfo.domain;
 import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.AddressModel;
 import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.ContactModel;
 import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.UserModel;
-import lombok.val;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ public class AddUserTest {
 
     @Test
     public void createNewUser() {
-        val user = addUser.createNewUser(new UserModel("First", "Last",
+        final var user = addUser.createNewUser(new UserModel("First", "Last",
                 Collections.emptyList(), Collections.emptyList()));
 
         Assertions.assertEquals("First", user.getFirstName());
@@ -37,7 +36,7 @@ public class AddUserTest {
 
     @Test
     public void throwExceptionWhenUserFirstOrLastNamesAreEmpty() {
-        val exception = Assertions.assertThrows(IllegalArgumentException.class, () -> addUser
+        final var exception = Assertions.assertThrows(IllegalArgumentException.class, () -> addUser
                 .createNewUser(new UserModel("", "", Collections.emptyList(), Collections.emptyList())));
 
         Assertions.assertEquals(IllegalArgumentException.class, exception.getClass());
@@ -45,7 +44,7 @@ public class AddUserTest {
 
     @Test
     public void userMustHaveAnAddressAndContact() {
-        val user = addUser.createNewUser(createFakeUser());
+        final var user = addUser.createNewUser(createFakeUser());
 
         Assertions.assertEquals("First", user.getFirstName());
         Assertions.assertEquals("Last", user.getLastName());
@@ -57,7 +56,7 @@ public class AddUserTest {
 
     @Test
     public void throwExceptionWhenAddressOrContactIsEmpty() {
-        val exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
+        final var exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
                 addUser.createNewUser(new UserModel("First", "Last", Collections.emptyList(),
                         Collections.emptyList())));
 
@@ -66,7 +65,7 @@ public class AddUserTest {
 
     @Test
     public void throwExceptionWhenAddressFieldsAreEmpty() {
-        val exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
+        final var exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
                 addUser.createNewUser(new UserModel("First", "Last",
                         Collections.singletonList(new AddressModel("", "", "", "",
                                 "", "")),
@@ -78,7 +77,7 @@ public class AddUserTest {
 
     @Test
     public void throwExceptionWhenContactEmailIsBlank() {
-        val exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
+        final var exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
                 addUser.createNewUser(new UserModel("First", "Last",
                         Collections.singletonList(new AddressModel("246", "21",
                                 "Manzoor Colony", "Karachi", "Sindh", "Pakistan")),
