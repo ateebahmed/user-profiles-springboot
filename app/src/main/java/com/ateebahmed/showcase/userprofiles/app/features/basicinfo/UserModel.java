@@ -5,10 +5,10 @@ import lombok.Value;
 import java.util.List;
 
 @Value
-public final class UserModel {
+public class UserModel {
 
-    private String firstName;
-    private String lastName;
-    private List<AddressModel> addresses;
-    private List<ContactModel> contacts;
+    String firstName;
+    String lastName;
+    List<AddressModel> addresses;
+    List<ContactModel> contacts;
 }
