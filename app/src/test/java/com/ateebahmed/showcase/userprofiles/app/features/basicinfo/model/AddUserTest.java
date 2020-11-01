@@ -1,4 +1,4 @@
-package com.ateebahmed.showcase.userprofiles.app.features.basicinfo.domain;
+package com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model;
 
 import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model.AddUser;
 import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model.Address;
@@ -24,14 +24,13 @@ public class AddUserTest {
 
     @Test
     public void createNewUser() {
-        final var user = addUser.createNewUser(new User("First", "Last",
-                Collections.emptyList(), Collections.emptyList()));
+        final var user = addUser.createNewUser(createFakeUser());
 
         Assertions.assertEquals("First", user.getFirstName());
         Assertions.assertEquals("Last", user.getLastName());
-        Assertions.assertEquals(0, user.getAddresses()
+        Assertions.assertEquals(1, user.getAddresses()
                 .size());
-        Assertions.assertEquals(0, user.getContacts()
+        Assertions.assertEquals(1, user.getContacts()
                 .size());
     }
 

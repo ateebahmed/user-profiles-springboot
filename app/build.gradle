@@ -9,17 +9,22 @@ plugins {
     id "io.freefair.lombok" version "5.3.0"
 }
 
+ext {
+    mapstructVersion = '1.4.1.Final'
+}
+
 dependencies {
     implementation project(':utilities')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct:${mapstructVersion}"
+
+    implementation 'com.h2database:h2:1.4.200'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-application {
-    // Define the main class for the application.
-    mainClass = 'com.ateebahmed.showcase.userprofiles.app.App'
 }
 
 test {

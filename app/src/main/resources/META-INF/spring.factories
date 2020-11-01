@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.ateebahmed.showcase.userprofiles.app.features.basicinfo.BasicInfoConfig
