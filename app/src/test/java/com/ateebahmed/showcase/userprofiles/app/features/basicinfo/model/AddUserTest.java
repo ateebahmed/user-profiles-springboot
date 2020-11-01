@@ -1,9 +1,5 @@
 package com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model;
 
-import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model.AddUser;
-import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model.Address;
-import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model.Contact;
-import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
