@@ -3,8 +3,8 @@ package com.ateebahmed.showcase.userprofiles.app.features.basicinfo;
 import lombok.Value;
 
 @Value
-public final class ContactModel {
+public class ContactModel {
 
-    private String email;
-    private String phoneNumber;
+    String email;
+    String phoneNumber;
 }

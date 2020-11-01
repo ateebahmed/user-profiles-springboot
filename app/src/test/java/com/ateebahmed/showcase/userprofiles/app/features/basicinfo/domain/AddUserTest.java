@@ -36,7 +36,7 @@ public class AddUserTest {
     }
 
     @Test
-    public void ThrowExceptionWhenUserFirstOrLastNamesAreEmpty() {
+    public void throwExceptionWhenUserFirstOrLastNamesAreEmpty() {
         val exception = Assertions.assertThrows(IllegalArgumentException.class, () -> addUser
                 .createNewUser(new UserModel("", "", Collections.emptyList(), Collections.emptyList())));
 
@@ -45,11 +45,7 @@ public class AddUserTest {
 
     @Test
     public void userMustHaveAnAddressAndContact() {
-        val user = addUser.createNewUser(new UserModel("First", "Last",
-                Collections.singletonList(new AddressModel("246", "21", "Manzoor Colony",
-                        "Karachi", "Sindh", "Pakistan")),
-                Collections.singletonList(new ContactModel("ateeb_ahmed33@outlook.com",
-                        "+923354733833"))));
+        val user = addUser.createNewUser(createFakeUser());
 
         Assertions.assertEquals("First", user.getFirstName());
         Assertions.assertEquals("Last", user.getLastName());
@@ -57,5 +53,45 @@ public class AddUserTest {
                 .size());
         Assertions.assertEquals(1, user.getContacts()
                 .size());
+    }
+
+    @Test
+    public void throwExceptionWhenAddressOrContactIsEmpty() {
+        val exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
+                addUser.createNewUser(new UserModel("First", "Last", Collections.emptyList(),
+                        Collections.emptyList())));
+
+        Assertions.assertEquals(IllegalArgumentException.class, exception.getClass());
+    }
+
+    @Test
+    public void throwExceptionWhenAddressFieldsAreEmpty() {
+        val exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
+                addUser.createNewUser(new UserModel("First", "Last",
+                        Collections.singletonList(new AddressModel("", "", "", "",
+                                "", "")),
+                        Collections.singletonList(new ContactModel("ateeb_ahmed33@outlook.com",
+                                "+923354733833")))));
+
+        Assertions.assertEquals(IllegalArgumentException.class, exception.getClass());
+    }
+
+    @Test
+    public void throwExceptionWhenContactEmailIsBlank() {
+        val exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
+                addUser.createNewUser(new UserModel("First", "Last",
+                        Collections.singletonList(new AddressModel("246", "21",
+                                "Manzoor Colony", "Karachi", "Sindh", "Pakistan")),
+                        Collections.singletonList(new ContactModel("", "")))));
+
+        Assertions.assertEquals(IllegalArgumentException.class, exception.getClass());
+    }
+
+    private UserModel createFakeUser() {
+        return new UserModel("First", "Last",
+                Collections.singletonList(new AddressModel("246", "21", "Manzoor Colony",
+                        "Karachi", "Sindh", "Pakistan")),
+                Collections.singletonList(new ContactModel("ateeb_ahmed33@outlook.com",
+                        "+923354733833")));
     }
 }
