@@ -6,20 +6,29 @@ plugins {
     id 'com.ateebahmed.showcase.userprofiles.java-application-conventions'
     id "org.springframework.boot" version "2.3.5.RELEASE"
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-    id "io.freefair.lombok" version "5.3.0"
+}
+
+ext {
+    mapstructVersion = '1.4.1.Final'
+    lombokVersion = '1.18.16'
 }
 
 dependencies {
     implementation project(':utilities')
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    implementation "org.projectlombok:lombok:${lombokVersion}"
+
+    // order matters
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+    implementation 'com.h2database:h2:1.4.200'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-application {
-    // Define the main class for the application.
-    mainClass = 'com.ateebahmed.showcase.userprofiles.app.App'
 }
 
 test {
