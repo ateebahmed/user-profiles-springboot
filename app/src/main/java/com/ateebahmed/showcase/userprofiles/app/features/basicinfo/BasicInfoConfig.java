@@ -5,10 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class BasicInfoConfig {
+class BasicInfoConfig {
 
-    @Bean
-    AddUser addUser() {
+    @Bean AddUser addUser() {
         return new AddUser();
     }
 }
