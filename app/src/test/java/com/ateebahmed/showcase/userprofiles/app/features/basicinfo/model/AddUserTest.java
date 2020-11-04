@@ -33,7 +33,7 @@ public class AddUserTest {
     @Test
     public void throwExceptionWhenUserFirstOrLastNamesAreEmpty() {
         final var exception = Assertions.assertThrows(IllegalArgumentException.class, () -> addUser
-                .createNewUser(new User("", "", Collections.emptyList(), Collections.emptyList())));
+                .createNewUser(new User("first", "", Collections.emptyList(), Collections.emptyList())));
 
         Assertions.assertEquals(IllegalArgumentException.class, exception.getClass());
     }
@@ -53,8 +53,9 @@ public class AddUserTest {
     @Test
     public void throwExceptionWhenAddressOrContactIsEmpty() {
         final var exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
-                addUser.createNewUser(new User("First", "Last", Collections.emptyList(),
-                        Collections.emptyList())));
+                addUser.createNewUser(new User("First", "Last",
+                        Collections.singletonList(new Address("", "", "", "", "",
+                                "")), Collections.emptyList())));
 
         Assertions.assertEquals(IllegalArgumentException.class, exception.getClass());
     }
