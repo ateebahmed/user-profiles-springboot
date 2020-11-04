@@ -65,8 +65,8 @@ public class AddUserTest {
                 addUser.createNewUser(new User("First", "Last",
                         Collections.singletonList(new Address("", "", "", "",
                                 "", "")),
-                        Collections.singletonList(new Contact("ateeb_ahmed33@outlook.com",
-                                "+923354733833")))));
+                        Collections.singletonList(new Contact("example@domain.com",
+                                "+1234567890")))));
 
         Assertions.assertEquals(IllegalArgumentException.class, exception.getClass());
     }
@@ -75,8 +75,8 @@ public class AddUserTest {
     public void throwExceptionWhenContactEmailIsBlank() {
         final var exception = Assertions.assertThrows(IllegalArgumentException.class, () ->
                 addUser.createNewUser(new User("First", "Last",
-                        Collections.singletonList(new Address("246", "21",
-                                "Manzoor Colony", "Karachi", "Sindh", "Pakistan")),
+                        Collections.singletonList(new Address("100", "70",
+                                "Nowhere", "Nowhere", "Nowhere", "Nowhere")),
                         Collections.singletonList(new Contact("", "")))));
 
         Assertions.assertEquals(IllegalArgumentException.class, exception.getClass());
@@ -84,9 +84,9 @@ public class AddUserTest {
 
     private User createFakeUser() {
         return new User("First", "Last",
-                Collections.singletonList(new Address("246", "21", "Manzoor Colony",
-                        "Karachi", "Sindh", "Pakistan")),
-                Collections.singletonList(new Contact("ateeb_ahmed33@outlook.com",
-                        "+923354733833")));
+                Collections.singletonList(new Address("8993", "8023", "Nowhere",
+                        "Nowhere", "Nowhere", "Nowhere")),
+                Collections.singletonList(new Contact("example@domain.com",
+                        "+0123456789")));
     }
 }
