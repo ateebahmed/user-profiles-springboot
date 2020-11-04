@@ -2,15 +2,17 @@ package com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model;
 
 import org.apache.logging.log4j.util.Strings;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 public final class AddUser {
 
     private final Predicate<User> userFirstLastNameAreBlank = user ->
-            Strings.isBlank(user.getFirstName()) && Strings.isBlank(user.getLastName());
+            Strings.isBlank(user.getFirstName()) || Strings.isBlank(user.getLastName());
 
     private final Predicate<User> userAddressContactAreEmpty = user ->
-            user.getAddresses().isEmpty() && user.getContacts().isEmpty();
+            (Objects.isNull(user.getAddresses()) || user.getAddresses().isEmpty())
+                    || (Objects.isNull(user.getContacts()) || user.getContacts().isEmpty());
 
     private final Predicate<Address> addressFieldsAreBlank = address -> Strings.isBlank(address.getArea())
             && Strings.isBlank(address.getCity()) && Strings.isBlank(address.getCountry())
