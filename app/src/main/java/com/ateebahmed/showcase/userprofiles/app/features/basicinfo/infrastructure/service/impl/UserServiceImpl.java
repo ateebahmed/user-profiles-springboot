@@ -7,8 +7,10 @@ import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.infrastructur
 import com.ateebahmed.showcase.userprofiles.app.features.basicinfo.model.AddUser;
 import org.springframework.stereotype.Component;
 
+import java.util.MissingResourceException;
+
 @Component
-public final class UserServiceImpl implements UserService {
+final class UserServiceImpl implements UserService {
 
     private final AddUser addUser;
     private final UserMapper mapper;
@@ -20,8 +22,14 @@ public final class UserServiceImpl implements UserService {
         this.repository = repository;
     }
 
-    @Override public UserDTO createUser(UserDTO userDTO) {
+    @Override public UserDTO createUser(final UserDTO userDTO) {
         final var user = addUser.createNewUser(mapper.toUserFrom(userDTO));
         return mapper.toUserDTOFrom(repository.save(mapper.toUserEntityFrom(user)));
+    }
+
+    @Override public UserDTO getUserBy(final long id) {
+        return mapper.toUserDTOFrom(repository.findById(id)
+                .orElseThrow(() -> new MissingResourceException(String.format("No user found for id %d", id),
+                        "UserDTO", String.valueOf(id))));
     }
 }
